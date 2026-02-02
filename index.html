@@ -97,7 +97,7 @@
 
   <div class="container">
     <h1>Abigugu!!!! Miste?? 💕</h1>
-    <h2>Will you be my Valentine?????</h2>
+    <h2>Try clicking NO first if you dare! 😏</h2>
 
     <!-- SAD DOG -->
     <img
@@ -122,9 +122,11 @@
     const noBtn = document.getElementById("no");
     const yesBtn = document.getElementById("yes");
     const music = document.getElementById("music");
+    const container = document.querySelector(".container");
 
     let scaleNo = 1;
     let scaleYes = 1;
+    let triedNo = false;
 
     function moveNoButton() {
       const x = Math.random() * (window.innerWidth - 120);
@@ -133,26 +135,38 @@
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
 
-      scaleNo = Math.max(scaleNo - 0.1, 0.3);
+      // Shrink NO button progressively
+      scaleNo = Math.max(scaleNo - 0.05, 0.3);
       noBtn.style.transform = `translateX(-50%) scale(${scaleNo})`;
 
-      scaleYes += 0.1;
+      // Grow YES button slightly as she tries NO
+      scaleYes += 0.05;
       yesBtn.style.transform = `translateX(-50%) scale(${scaleYes})`;
+
+      // First hover triggers playful message and NO disappearance
+      if (!triedNo) {
+        triedNo = true;
+        setTimeout(() => {
+          container.querySelector("h2").innerHTML = "Haha, there’s only one option left… 😏";
+          // Hide NO button fully
+          noBtn.style.display = "none";
+        }, 700); // slightly longer for drama
+      }
     }
 
     noBtn.addEventListener("mouseover", moveNoButton);
 
     yesBtn.addEventListener("click", () => {
-      // Start music first (browser-approved)
+      // Start music first
       music.currentTime = 0;
       music.play();
 
       // Confetti & hearts
-      for (let i = 0; i < 80; i++) createEffect();
+      for (let i = 0; i < 100; i++) createEffect(); // more confetti for fun
 
       // Delay DOM replacement so music keeps playing
       setTimeout(() => {
-        document.querySelector(".container").innerHTML = `
+        container.innerHTML = `
           <h1>YAYYYYY 🐶🎉</h1>
           <img class="dog" src="happy.png" alt="Happy Puppy">
           <h2>
