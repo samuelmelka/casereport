@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title> 💖 Please Be My Valentine</title>
+  <title>💖 Please Be My Valentine</title>
 
   <style>
     body {
@@ -113,14 +113,14 @@
     </div>
   </div>
 
-<audio id="music" preload="auto">
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+  <!-- AUDIO -->
+  <audio id="music" preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
     const noBtn = document.getElementById("no");
     const yesBtn = document.getElementById("yes");
-    const dogImage = document.getElementById("dogImage");
     const music = document.getElementById("music");
 
     let scaleNo = 1;
@@ -143,42 +143,30 @@
     noBtn.addEventListener("mouseover", moveNoButton);
 
     yesBtn.addEventListener("click", () => {
-  // Start music FIRST
-  music.currentTime = 0;
-  music.play();
-
-  // Effects
-  for (let i = 0; i < 80; i++) createEffect();
-
-  // Delay DOM replacement so browser keeps audio alive
-  setTimeout(() => {
-    document.querySelector(".container").innerHTML = `
-      <h1>YAYYYYY 🐶🎉</h1>
-      <img class="dog" src="happy.png" alt="Happy Puppy">
-    `;
-  }, 400); // <-- THIS delay is the magic
-});
-
-      // Switch to HAPPY DOG
-      dogImage.src = "happy.png";
+      // Start music first (browser-approved)
+      music.currentTime = 0;
+      music.play();
 
       // Confetti & hearts
       for (let i = 0; i < 80; i++) createEffect();
 
-      document.querySelector(".container").innerHTML = `
-        <h1>YAYYYYY 🐶🎉</h1>
-        <img class="dog" src="happy.png" alt="Happy Puppy">
-        <h2>
-          My go-to female to annoy 😌<br>
-          My favorite homosapien 🧠💗<br>
-          My lovely XX chromosome ✨<br>
-          The best ever zygote to occupy a uterus 🥚😂<br>
-          The most amazing combo of endoderm, mesoderm & ectoderm 🧬<br>
-          The holder of the legendary gluteus maximus ever known to man🍑🐶<br>
-          The only organism that overrides my frontal lobe 🧠💥<br>
-          And somehow… still my favorite person 💕
-        </h2>
-      `;
+      // Delay DOM replacement so music keeps playing
+      setTimeout(() => {
+        document.querySelector(".container").innerHTML = `
+          <h1>YAYYYYY 🐶🎉</h1>
+          <img class="dog" src="happy.png" alt="Happy Puppy">
+          <h2>
+            My go-to female to annoy 😌<br>
+            My favorite homosapien 🧠💗<br>
+            My lovely XX chromosome ✨<br>
+            The best ever zygote to occupy a uterus 🥚😂<br>
+            The most amazing combo of endoderm, mesoderm & ectoderm 🧬<br>
+            The holder of the legendary gluteus maximus ever known to man 🍑🐶<br>
+            The only organism that overrides my frontal lobe 🧠💥<br>
+            And somehow… still my favorite person 💕
+          </h2>
+        `;
+      }, 400);
     });
 
     function createEffect() {
