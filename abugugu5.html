@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Abigugu Guade 💖 Please Be My Valentine</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: pink;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Comic Sans MS', cursive;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(255,255,255,0.9);
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      z-index: 2;
+      max-width: 600px;
+    }
+
+    h1 {
+      color: #ff2f92;
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #ff5fa2;
+      margin-bottom: 25px;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+
+    .dog {
+      width: 300px;
+      border-radius: 20px;
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 160px;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      border-radius: 20px;
+      font-size: 1.6rem;
+      padding: 15px 40px;
+      position: absolute;
+      transition: all 0.2s ease;
+    }
+
+    #yes {
+      background: #ff2f92;
+      color: white;
+      font-size: 2.2rem;
+      padding: 22px 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    #no {
+      background: #666;
+      color: white;
+      top: 90px;
+      left: 50%;
+      transform: translateX(-50%) scale(1);
+      z-index: 2;
+    }
+
+    .heart, .confetti {
+      position: fixed;
+      pointer-events: none;
+      animation: fall 3s linear forwards;
+      font-size: 24px;
+    }
+
+    @keyframes fall {
+      from { transform: translateY(-20px); opacity: 1; }
+      to { transform: translateY(100vh); opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Abigugu Guade!!!! Miste?? 💕</h1>
+    <h2>Will you be my Valentine?????</h2>
+
+    <!-- Sad puppy -->
+    <img
+      class="dog"
+      src="sad.png"
+      alt="Sad Puppy"
+    />
+
+    <div class="buttons">
+      <button id="yes">YES 😍</button>
+      <button id="no">NO 🙃</button>
+    </div>
+  </div>
+
+  <!-- Music -->
+  <iframe id="music" width="0" height="0" src="" allow="autoplay"></iframe>
+
+  <script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    let scaleNo = 1;
+    let scaleYes = 1;
+
+    function moveNoButton() {
+      const x = Math.random() * (window.innerWidth - 120);
+      const y = Math.random() * (window.innerHeight - 60);
+
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+
+      scaleNo = Math.max(scaleNo - 0.1, 0.3);
+      noBtn.style.transform = `translateX(-50%) scale(${scaleNo})`;
+
+      scaleYes += 0.1;
+      yesBtn.style.transform = `translateX(-50%) scale(${scaleYes})`;
+    }
+
+    noBtn.addEventListener("mouseover", moveNoButton);
+
+    yesBtn.addEventListener("click", () => {
+      document.getElementById("music").src =
+        "https://www.youtube.com/embed/ZEcqHA7dbwM?autoplay=1";
+
+      for (let i = 0; i < 80; i++) {
+        const el = document.createElement("div");
+        el.className = Math.random() > 0.5 ? "heart" : "confetti";
+        el.innerText = Math.random() > 0.5 ? "💖" : "🎉";
+        el.style.left = Math.random() * window.innerWidth + "px";
+        el.style.top = "-20px";
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 3000);
+      }
+
+      document.querySelector(".container").innerHTML = `
+        <h1>YAYYYYY 🐶🐶🐶 You have made daddyyyy proud</h1>
+        <img class="dog" src="happy.png" alt="Happy Puppy">
+        <h2>
+          My go‑to female to annoy 😌<br>
+          My favorite homosapien 🧠💗<br>
+          My lovely XX chromosome✨<br>
+          The best ever zygote to occupy a uterus🥚😂<br>
+          The most amazing combination of endoderm, mesoderm and ectoderm🧬<br>
+          The holder of the most amazing gluteus Maximus 🍑🐶🐶<br>
+          The newly 20 year old that never fails to unveil my goofy sides.<br>
+          The only organism that can override my frontal lobe 🧠💥<br>
+          And somehow… still my favorite person 💕
+        </h2>
+      `;
+    });
+  </script>
+
+</body>
+</html>
