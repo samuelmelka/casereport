@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Abigugu Guade 💖 Please Be My Valentine</title>
+  <title> 💖 Please Be My Valentine</title>
 
   <style>
     body {
@@ -96,11 +96,12 @@
 <body>
 
   <div class="container">
-    <h1>Abigugu Guade!!!! Miste?? 💕</h1>
+    <h1>Abigugu!!!! Miste?? 💕</h1>
     <h2>Will you be my Valentine?????</h2>
 
-    <!-- Sad puppy -->
+    <!-- SAD DOG -->
     <img
+      id="dogImage"
       class="dog"
       src="sad.png"
       alt="Sad Puppy"
@@ -112,12 +113,17 @@
     </div>
   </div>
 
-  <!-- Music -->
-  <iframe id="music" width="0" height="0" src="" allow="autoplay"></iframe>
+  <!-- AUDIO (works after click) -->
+  <audio id="music" preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
     const noBtn = document.getElementById("no");
     const yesBtn = document.getElementById("yes");
+    const dogImage = document.getElementById("dogImage");
+    const music = document.getElementById("music");
+
     let scaleNo = 1;
     let scaleYes = 1;
 
@@ -138,35 +144,40 @@
     noBtn.addEventListener("mouseover", moveNoButton);
 
     yesBtn.addEventListener("click", () => {
-      document.getElementById("music").src =
-        "https://www.youtube.com/embed/ZEcqHA7dbwM?autoplay=1";
+      // Play music (browser-approved)
+      music.play();
 
-      for (let i = 0; i < 80; i++) {
-        const el = document.createElement("div");
-        el.className = Math.random() > 0.5 ? "heart" : "confetti";
-        el.innerText = Math.random() > 0.5 ? "💖" : "🎉";
-        el.style.left = Math.random() * window.innerWidth + "px";
-        el.style.top = "-20px";
-        document.body.appendChild(el);
-        setTimeout(() => el.remove(), 3000);
-      }
+      // Switch to HAPPY DOG
+      dogImage.src = "happy.png";
+
+      // Confetti & hearts
+      for (let i = 0; i < 80; i++) createEffect();
 
       document.querySelector(".container").innerHTML = `
-        <h1>YAYYYYY 🐶🐶🐶 You have made daddyyyy proud</h1>
+        <h1>YAYYYYY 🐶🎉</h1>
         <img class="dog" src="happy.png" alt="Happy Puppy">
         <h2>
-          My go‑to female to annoy 😌<br>
+          My go-to female to annoy 😌<br>
           My favorite homosapien 🧠💗<br>
-          My lovely XX chromosome✨<br>
-          The best ever zygote to occupy a uterus🥚😂<br>
-          The most amazing combination of endoderm, mesoderm and ectoderm🧬<br>
-          The holder of the most amazing gluteus Maximus 🍑🐶🐶<br>
-          The newly 20 year old that never fails to unveil my goofy sides.<br>
-          The only organism that can override my frontal lobe 🧠💥<br>
+          My lovely XX chromosome ✨<br>
+          The best ever zygote to occupy a uterus 🥚😂<br>
+          The most amazing combo of endoderm, mesoderm & ectoderm 🧬<br>
+          The holder of the legendary gluteus maximus ever known to man🍑🐶<br>
+          The only organism that overrides my frontal lobe 🧠💥<br>
           And somehow… still my favorite person 💕
         </h2>
       `;
     });
+
+    function createEffect() {
+      const el = document.createElement("div");
+      el.className = Math.random() > 0.5 ? "heart" : "confetti";
+      el.innerText = Math.random() > 0.5 ? "💖" : "🎉";
+      el.style.left = Math.random() * window.innerWidth + "px";
+      el.style.top = "-20px";
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 3000);
+    }
   </script>
 
 </body>
